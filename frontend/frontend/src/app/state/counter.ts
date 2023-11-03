@@ -1,9 +1,9 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
-import { CounterCommands } from "./counter.actions";
+import { CounterCommands, CounterDocuments } from "./counter.actions";
 
 export type CountByValues = 1 | 3 | 5;
 
-type CounterState = {
+export type CounterState = {
   current: number;
   by: CountByValues;
 };
@@ -18,6 +18,7 @@ export const CounterFeature = createFeature({
   name: "CounterFeature",
   reducer: createReducer(
     initialState,
+    on(CounterDocuments.counterState, (s, a) => a.payload),
     on(CounterCommands.incrementTheCount, (s) => ({
       ...s,
       current: s.current + s.by,

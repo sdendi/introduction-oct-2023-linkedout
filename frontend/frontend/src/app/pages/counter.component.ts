@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Store } from "@ngrx/store";
-import { CounterCommands } from "../state/counter.actions";
+import { CounterCommands, CounterEvents } from "../state/counter.actions";
 import { CounterFeature } from "../state/counter";
 import { CountByComponent } from "./components/count-by.component";
 
@@ -38,7 +38,9 @@ import { CountByComponent } from "./components/count-by.component";
 export class CounterComponent {
   current = this.store.selectSignal(CounterFeature.selectCurrent);
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) {
+    store.dispatch(CounterEvents.counterFeatureEntered());
+  }
 
   increment() {
     this.store.dispatch(CounterCommands.incrementTheCount());

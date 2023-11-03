@@ -24,6 +24,12 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
           class="tab tab-lg tab-lifted"
           >Todo List</a
         >
+        <a
+          routerLink="/links"
+          [routerLinkActive]="['tab-active']"
+          class="tab tab-lg tab-lifted"
+          >Links</a
+        >
       </div>
     </nav>
   `,
